@@ -5,7 +5,7 @@
 
 int main(void)
 {
-	cnt_data client;
+	cnt_data client = { 0 };
 	client.port = htons(8000);
 	inet_aton("127.0.0.1", &client.host);
 	client.BUF_SIZE = 1024;

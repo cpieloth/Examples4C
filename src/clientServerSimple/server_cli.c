@@ -4,7 +4,7 @@
 
 #include "server.h"
 
-static svr_data server;
+static svr_data server = { 0 };
 
 void hdl_sigint(int sig)
 {
