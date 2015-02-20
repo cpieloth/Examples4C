@@ -1,5 +1,6 @@
 #include <pthread.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h> // sleep
 
@@ -89,6 +90,7 @@ static void* _svr_serve_client(void* arg)
 	--(svr->running_threads);
 	pthread_mutex_unlock(&(svr->running_mutex));
 
+	free(tArg);
 	return NULL;
 }
 
@@ -98,9 +100,6 @@ void svr_run(svr_data* const svr)
 	socklen_t clnAddrLen = sizeof(clnAddress);
 	const size_t BUF_SIZE = svr->BUF_SIZE;
 	char buffer[BUF_SIZE];
-
-	// FIXME tArg could be outdated in thread!
-	_svr_thread_arg tArg;
 
 	while (svr->is_running == SVR_TRUE)
 	{
@@ -112,9 +111,10 @@ void svr_run(svr_data* const svr)
 		}
 		log_info(SOURCE, "New client connected.");
 
-		tArg.sd = clnSocket;
-		tArg.svr = svr;
-		if (pthread_create(&tArg.tId, NULL, &_svr_serve_client, (void*) &tArg) == 0)
+		_svr_thread_arg* tArg = (_svr_thread_arg*) malloc(sizeof(_svr_thread_arg));
+		tArg->sd = clnSocket;
+		tArg->svr = svr;
+		if (pthread_create(&tArg->tId, NULL, &_svr_serve_client, (void*) tArg) == 0)
 		{
 			log_info(SOURCE, "New thread for client started.");
 			pthread_mutex_lock(&(svr->running_mutex));
