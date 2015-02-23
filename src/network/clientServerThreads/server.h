@@ -1,5 +1,5 @@
-#ifndef CLIENTSERVERSIMPLE_SERVER_H_
-#define CLIENTSERVERSIMPLE_SERVER_H_
+#ifndef CLIENTSERVERTHREADS_SERVER_H_
+#define CLIENTSERVERTHREADS_SERVER_H_
 
 #include <pthread.h> // running_mutex
 #include <netinet/in.h> // in_port_t port
@@ -29,4 +29,4 @@ void svr_run(svr_data* const svr);
 
 void svr_close(svr_data* const svr);
 
-#endif /* CLIENTSERVERSIMPLE_SERVER_H_ */
+#endif /* CLIENTSERVERTHREADS_SERVER_H_ */
