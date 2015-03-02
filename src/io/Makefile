@@ -1,8 +1,8 @@
 CC=gcc
-CCFLAGS=-O2
+CCFLAGS=-O2 -DNDEBUG
 
 SRC=person.c person_io.c person_rw_cli.c
-OBJS=person.o person_io.o person_rw_cli.o
+OBJS=person.o person_io.o person_rw_cli.o log.o
 
 LIBS=-lm
 EXEC=person_rw_cli

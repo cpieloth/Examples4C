@@ -25,6 +25,6 @@ size_t psn_io_write(PersonIO* const pio, const Person* const p);
 
 void psn_to_byte(psn_byte_t** b, size_t* const len, const Person* const p);
 
-Person* psn_from_byte(const psn_byte_t* const b);
+Person* psn_from_byte(const psn_byte_t* const b, size_t len);
 
 #endif /* IO_PERSON_IO_H_ */

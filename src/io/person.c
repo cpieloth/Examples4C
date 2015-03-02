@@ -32,16 +32,18 @@ void psn_free(Person* const p)
 
 char* psn_to_string(const Person* const p)
 {
-	char* yob = itoa(p->year_of_birth);
-	size_t len = 1;
+	char* const yob = itoa(p->year_of_birth);
+	const char sep[] = ", ";
+
+	size_t len = 1; // \0
 	len += strlen(p->forename);
-	len += 2; // ", "
+	len += strlen(sep);
 	len += strlen(p->surname);
-	len += 2; // ", "
+	len += strlen(sep);
 	len += strlen(yob);
 
-	char sep[] = ", ";
-	char* str_p = malloc(len + 1);
+	char* const str_p = malloc(len);
+	str_p[0] = '\0';
 	strcat(str_p, p->forename);
 	strcat(str_p, sep);
 	strcat(str_p, p->surname);
