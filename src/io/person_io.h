@@ -9,8 +9,8 @@ typedef unsigned char psn_byte_t;
 
 typedef struct
 {
-	FILE* fp;
-	size_t count;
+    FILE* fp;
+    size_t count;
 } PersonIO;
 
 PersonIO* psn_io_open_rd(const char* fname);

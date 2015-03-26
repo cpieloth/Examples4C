@@ -3,9 +3,9 @@
 
 typedef struct
 {
-	char* forename;
-	char* surname;
-	int year_of_birth;
+    char* forename;
+    char* surname;
+    int year_of_birth;
 } Person;
 
 Person* psn_create(char* forename, char* surname, int year_of_birth);

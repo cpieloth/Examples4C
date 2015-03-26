@@ -11,7 +11,7 @@
 
 typedef enum
 {
-	list_FALSE, list_TRUE
+    list_FALSE, list_TRUE
 } list_bool_type;
 
 typedef size_t list_size_type; //!< Type for index and size.
@@ -25,8 +25,8 @@ extern const list_value_type list_NO_VALUE; //!< Indicates if an error or no val
  */
 typedef struct _list_node
 {
-	list_value_type value;
-	struct _list_node* next;
+    list_value_type value;
+    struct _list_node* next;
 } list_node;
 
 /**
@@ -34,9 +34,9 @@ typedef struct _list_node
  */
 typedef struct
 {
-	list_node* begin;
-	list_node* end;
-	list_size_type size;
+    list_node* begin;
+    list_node* end;
+    list_size_type size;
 } list;
 
 /**

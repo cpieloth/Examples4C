@@ -9,10 +9,10 @@ extern cnt_bool_t CNT_FALSE;
 
 typedef struct
 {
-	int sd;
-	in_addr_t host;
-	in_port_t port;
-	size_t BUF_SIZE;
+    int sd;
+    in_addr_t host;
+    in_port_t port;
+    size_t BUF_SIZE;
 } cnt_data;
 
 cnt_bool_t cnt_connect(cnt_data* const cnt);

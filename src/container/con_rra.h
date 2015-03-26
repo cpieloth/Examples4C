@@ -17,9 +17,9 @@ typedef int con_rraType_t;
  */
 typedef struct con_rra
 {
-	con_rraType_t* values;
-	long pos;
-	long size;
+    con_rraType_t* values;
+    long pos;
+    long size;
 } con_rra_t;
 
 /**
