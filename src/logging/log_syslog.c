@@ -20,7 +20,7 @@ void log_init()
     openlog(ident, LOG_CONS | LOG_PID, LOG_LOCAL0);
 }
 
-static log_tag(int log_level, const char* src, const char* format, va_list argptr)
+static _log_tag(int log_level, const char* src, const char* format, va_list argptr)
 {
     const size_t n_prefix = strlen(src) + 1 + 1 + 1; // SRC:_\0
     char prefix[n_prefix];
@@ -42,7 +42,7 @@ void log_error(const char* src, const char* format, ...)
 {
     va_list args;
     va_start(args, format);
-    log_tag(LOG_ERR, src, format, args);
+    _log_tag(LOG_ERR, src, format, args);
     va_end(args);
 }
 
@@ -50,7 +50,7 @@ void log_warn(const char* src, const char* format, ...)
 {
     va_list args;
     va_start(args, format);
-    log_tag(LOG_WARNING, src, format, args);
+    _log_tag(LOG_WARNING, src, format, args);
     va_end(args);
 }
 
@@ -58,7 +58,7 @@ void log_info(const char* src, const char* format, ...)
 {
     va_list args;
     va_start(args, format);
-    log_tag(LOG_INFO, src, format, args);
+    _log_tag(LOG_INFO, src, format, args);
     va_end(args);
 }
 
@@ -66,7 +66,7 @@ void log_debug(const char* src, const char* format, ...)
 {
     va_list args;
     va_start(args, format);
-    log_tag(LOG_DEBUG, src, format, args);
+    _log_tag(LOG_DEBUG, src, format, args);
     va_end(args);
 }
 
