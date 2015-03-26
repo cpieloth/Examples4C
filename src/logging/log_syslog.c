@@ -38,7 +38,7 @@ static log_tag(int log_level, const char* src, const char* format, va_list argpt
 	syslog(log_level, "%s", log_msg);
 }
 
-void log_error(const char* src, const char *format, ...)
+void log_error(const char* src, const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -46,7 +46,7 @@ void log_error(const char* src, const char *format, ...)
 	va_end(args);
 }
 
-void log_warn(const char* src, const char *format, ...)
+void log_warn(const char* src, const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -54,7 +54,7 @@ void log_warn(const char* src, const char *format, ...)
 	va_end(args);
 }
 
-void log_info(const char* src, const char *format, ...)
+void log_info(const char* src, const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
@@ -62,7 +62,7 @@ void log_info(const char* src, const char *format, ...)
 	va_end(args);
 }
 
-void log_debug(const char* src, const char *format, ...)
+void log_debug(const char* src, const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);

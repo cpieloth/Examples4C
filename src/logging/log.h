@@ -22,7 +22,7 @@ void log_close();
  * \param src Source of the message, e.g. module or method.
  * \param msg Message to log.
  */
-void log_error(const char* src, const char *msg, ...);
+void log_error(const char* src, const char* msg, ...);
 
 /**
  * Logs a warning.
@@ -30,7 +30,7 @@ void log_error(const char* src, const char *msg, ...);
  * \param src Source of the message, e.g. module or method.
  * \param msg Message to log.
  */
-void log_warn(const char* src, const char *msg, ...);
+void log_warn(const char* src, const char* msg, ...);
 
 /**
  * Logs an info messages.
@@ -38,7 +38,7 @@ void log_warn(const char* src, const char *msg, ...);
  * \param src Source of the message, e.g. module or method.
  * \param msg Message to log.
  */
-void log_info(const char* src, const char *msg, ...);
+void log_info(const char* src, const char* msg, ...);
 
 /**
  * Logs a debug message.
@@ -46,6 +46,6 @@ void log_info(const char* src, const char *msg, ...);
  * \param src Source of the message, e.g. module or method.
  * \param msg Message to log.
  */
-void log_debug(const char* src, const char *msg, ...);
+void log_debug(const char* src, const char* msg, ...);
 
 #endif /* LOGGING_LOG_H_ */
