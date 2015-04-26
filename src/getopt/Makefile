@@ -1,22 +1,21 @@
 CC=gcc
 CCFLAGS=-O2 -DNDEBUG -std=c11
 
-OBJS=getopt_cli.o getoptlong_cli.o
-
+SRC=
+OBJS=
 LIBS=
-EXEC=getopt_cli getoptlong_cli
+EXEC=getopt getoptlong
 
 all: $(EXEC) 
 
 %.o: %.c
 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< 
 	
-getopt_cli: $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ getopt_cli.o $(LIBS)
+getopt: getopt_main.o
+	$(CC) $(LDFLAGS) -o $@ getopt_main.o $(OBJS) $(LIBS)
 	
-getoptlong_cli: $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ getoptlong_cli.o $(LIBS)
+getoptlong: getoptlong_main.o
+	$(CC) $(LDFLAGS) -o $@ getoptlong_main.o $(OBJS) $(LIBS)
 
 clean:
 	$(RM) *.o *.so *.a $(EXEC)
-       
