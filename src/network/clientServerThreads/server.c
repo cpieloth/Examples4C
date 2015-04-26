@@ -78,6 +78,7 @@ static void* _svr_serve_client(void* arg)
         log_info(SOURCE, msg);
 
         const char msg_send[] = "server says hello";
+        // FIXME(cpieloth): Check sent bytes and may send rest
         send(sd, msg_send, strlen(msg_send), 0);
     }
     else

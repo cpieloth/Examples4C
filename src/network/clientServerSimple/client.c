@@ -38,6 +38,7 @@ void cnt_run(cnt_data* const cnt)
 
     printf("Message to send: ");
     fgets(buffer, BUF, stdin);
+    // FIXME(cpieloth): Check sent bytes and may send rest
     send(cnt->sd, buffer, strlen(buffer), 0);
 
     const int size = recv(cnt->sd, buffer, BUF - 1, 0);

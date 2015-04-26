@@ -76,6 +76,7 @@ void svr_run(svr_data* const svr)
             log_info(SOURCE, msg);
 
             const char msg_send[] = "server says hello";
+            // FIXME(cpieloth): Check sent bytes and may send rest
             send(clnSocket, msg_send, strlen(msg_send), 0);
         }
         else
