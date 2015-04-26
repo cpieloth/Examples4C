@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h> // EXIT_SUCCESS, EXIT_FAILURE
-#include <getopt.h> // workaround for error with -std=c99
+#include <getopt.h> // getopt_long
 
 /**
  * Prints a help messages.

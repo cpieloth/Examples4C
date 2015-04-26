@@ -12,7 +12,10 @@
 #include <stdio.h>
 #include <stdlib.h> // EXIT_SUCCESS, EXIT_FAILURE
 #include <unistd.h> // getopt
-#include <getopt.h> // workaround for error with -std=c99
+#ifdef __GNUC__
+// workaround for errors with getopt, opterr, optarg, optopt
+#include <getopt.h>
+#endif // __GNUC__
 
 /**
  * Prints a help messages.
