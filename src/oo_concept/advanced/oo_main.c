@@ -21,13 +21,21 @@ int main()
     Counter counter;
     Counter* ptr_counter = init_counter(&counter);
 
-    ptr_counter->construct(ptr_counter);
+    // Counter_construct(ptr_counter); // Good: not possible
 
-    printf("counter.__counter=%zu\n", counter.__count); // Bad: access to private variable
+    if (ptr_counter->construct(ptr_counter) == false)
+    {
+        printf("Could not construct counter!");
+        return EXIT_FAILURE;
+    }
+    // printf("counter.__counter=%zu\n", counter.__count); // Good: no direct access to private variables
+    // counter.__data = 0; // Bad: private variable still accessible
+
     printf("Counter: %zu\n", ptr_counter->counter(ptr_counter));
 
-    Counter_increment(&counter); // Bad: (OO-)static class method
+    // Counter_increment(&counter); // Good: no (OO-)static class methods
     ptr_counter->increment(ptr_counter); // Good: object methods
+    ptr_counter->increment(ptr_counter);
 
     printf("Counter: %zu\n", ptr_counter->counter(ptr_counter));
 
@@ -45,7 +53,13 @@ int main()
         printf("Could not create counter!");
         return EXIT_FAILURE;
     }
-    ptr_counter->construct(ptr_counter);
+
+    if (ptr_counter->construct(ptr_counter) == false)
+    {
+        printf("Could not construct counter!");
+        delete_counter(ptr_counter);
+        return EXIT_FAILURE;
+    }
 
     printf("Counter: %zu\n", ptr_counter->counter(ptr_counter));
 

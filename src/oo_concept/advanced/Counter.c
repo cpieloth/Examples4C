@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Counter.h"
+#include "_Counter.h"
 
 #define TRACE printf("%s() called!\n", __func__)
 
@@ -37,29 +37,41 @@ void delete_counter(Counter* const this)
     free(this);
 }
 
-void Counter_construct(Counter* const this)
+static bool Counter_construct(Counter* const this)
 {
     assert(this != NULL);
     TRACE;
-    this->__count = 0;
+    this->__data = malloc(sizeof(_CounterData));
+    if (this->__data)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
-void Counter_destruct(Counter* const this)
+static void Counter_destruct(Counter* const this)
 {
     assert(this != NULL);
     TRACE;
-    this->__count = 0;
+    free(this->__data);
 }
 
-void Counter_increment(Counter* const this)
+static void Counter_increment(Counter* const this)
 {
     assert(this != NULL);
+    assert(this->__data != NULL);
     TRACE;
-    ++this->__count;
+    _CounterData* const data = (_CounterData*) this->__data;
+    ++data->count;
 }
 
-size_t Counter_counter(Counter* const this)
+static size_t Counter_counter(Counter* const this)
 {
     assert(this != NULL);
-    return this->__count;
+    assert(this->__data != NULL);
+    _CounterData* const data = (_CounterData*) this->__data;
+    return data->count;
 }
