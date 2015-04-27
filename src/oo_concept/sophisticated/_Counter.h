@@ -3,12 +3,15 @@
 
 #include "Counter.h"
 
+#define GET_CLASS_DATA(this) ((_CounterData*)this)
+
 typedef struct _counter_data
 {
+    Counter class;
     size_t count;
 } _CounterData;
 
-static bool Counter_construct(Counter* const this);
+static void Counter_construct(Counter* const this);
 static void Counter_destruct(Counter* const this);
 
 static void Counter_increment(Counter* const this);
