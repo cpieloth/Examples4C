@@ -3,6 +3,7 @@
 
 #include "Counter.h"
 
+#undef GET_CLASS_DATA
 #define GET_CLASS_DATA(this) ((_CounterData*)this)
 
 typedef struct _counter_data

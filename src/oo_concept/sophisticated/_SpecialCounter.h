@@ -11,7 +11,7 @@ typedef struct _special_counter_data
 {
     SpecialCounter class;
     Counter* super;
-    size_t count;
+    size_t count2;
 } _SpecialCounterData;
 
 static void SpecialCounter_construct(SpecialCounter* const this);

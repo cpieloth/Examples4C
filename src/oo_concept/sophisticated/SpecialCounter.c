@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <stddef.h> // offsetof
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,13 +14,17 @@ SpecialCounter* new_special_counter()
     {
         return NULL;
     }
+
     instance->super = new_counter();
-    // check error;
-    instance->class.increment = &SpecialCounter_increment;
-    instance->class.counter = &SpecialCounter_counter;
+    if (instance->super == NULL)
+    {
+        return NULL;
+    }
 
     instance->class.construct = &SpecialCounter_construct;
     instance->class.destruct = &SpecialCounter_destruct;
+    instance->class.increment = &SpecialCounter_increment;
+    instance->class.counter = &SpecialCounter_counter;
     instance->class.increment2 = &SpecialCounter_increment2;
     instance->class.counter2 = &SpecialCounter_counter2;
 
@@ -37,13 +42,30 @@ void delete_special_counter(SpecialCounter* const this)
     free(this);
 }
 
+Counter* upcast_special_counter(SpecialCounter* const this)
+{
+    assert(this != NULL);
+    TRACE;
+    void* counter = ((void*) this) - offsetof(_SpecialCounterData, super); // instead of ...-sizeof(SpecialCounter)
+    return (Counter*) counter;
+}
+
+SpecialCounter* downcast_special_counter(Counter* const this)
+{
+    assert(this != NULL);
+    TRACE;
+    void* special_counter = ((void*) this) + offsetof(_SpecialCounterData, super); // instead of ...-sizeof(SpecialCounter)
+    return (SpecialCounter*) special_counter;
+
+}
+
 static void SpecialCounter_construct(SpecialCounter* const this)
 {
     assert(this != NULL);
     TRACE;
     _SpecialCounterData* data = GET_CLASS_DATA(this);
     data->super->construct(data->super);
-    data->count = 10;
+    data->count2 = 10;
 }
 
 static void SpecialCounter_destruct(SpecialCounter* const this)
@@ -71,11 +93,11 @@ static void SpecialCounter_increment2(SpecialCounter* const this)
     assert(this != NULL);
     TRACE;
     _SpecialCounterData* const data = GET_CLASS_DATA(this);
-    ++data->count;
+    ++data->count2;
 }
 
 static size_t SpecialCounter_counter2(SpecialCounter* const this)
 {
     assert(this != NULL);
-    return GET_CLASS_DATA(this)->count;
+    return GET_CLASS_DATA(this)->count2;
 }

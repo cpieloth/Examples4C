@@ -1,5 +1,6 @@
 CC=gcc
 CCFLAGS=-O2 -DNDEBUG -std=c11
+# CCFLAGS=-O0 -g -std=c11
 
 SRC=
 OBJS=oo_main.o Counter.o SpecialCounter.o
