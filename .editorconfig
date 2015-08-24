@@ -10,9 +10,14 @@ charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 
-# C style
-# BSD/Allman
+# C style: BSD/Allman
 [*.{c,h}]
+# https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties#ideas-for-domain-specific-properties
+indent_brace_style = Allmann
 indent_style = space
 indent_size = 4
 max_line_length = 120
+
+[Makefile]
+indent_style = tab
+max_line_length = 80
