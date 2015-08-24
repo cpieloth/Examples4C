@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+// TODO(cpieloth): use fcntl.h to lock stdout
+
 #include "log.h"
 
 /**
